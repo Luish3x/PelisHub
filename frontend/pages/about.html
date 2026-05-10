@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelisHub — Nosotros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #e50914;
+            --red-dark: #b20710;
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface2: #1a1a1a;
+            --border: rgba(255, 255, 255, 0.07);
+            --text: #f0f0f0;
+            --muted: #666;
+            --navbar-h: 64px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: var(--navbar-h);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0 40px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent);
+            transition: background 0.3s;
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            letter-spacing: 2px;
+            color: var(--red);
+            text-decoration: none;
+            text-shadow: 0 0 30px rgba(229, 9, 20, 0.35);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 3px;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 7px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--red-dark);
+        }
+
+        .nav-btn.ghost {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .nav-btn.ghost:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            padding: calc(var(--navbar-h) + 80px) 40px 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(229, 9, 20, 0.12) 0%, transparent 65%);
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255, 255, 255, 0.01) 3px, rgba(255, 255, 255, 0.01) 4px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 14px;
+            animation: fadeUp 0.5s 0.1s both;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            animation: fadeUp 0.5s 0.2s both;
+        }
+
+        .hero-sub {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            animation: fadeUp 0.5s 0.3s both;
+        }
+
+        /* SECTIONS */
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px 100px;
+        }
+
+        /* MISSION */
+        .mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
+            animation: fadeUp 0.5s 0.2s both;
+        }
+
+        .mission-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+        }
+
+        .mission-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .mission-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            color: var(--red);
+        }
+
+        .mission-text {
+            color: rgba(240, 240, 240, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            text-align: justify;
+        }
+
+        /* FEATURES */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            animation: fadeUp 0.5s 0.25s both;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 60px;
+            animation: fadeUp 0.5s 0.3s both;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(229, 9, 20, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-weight: 500;
+            font-size: 0.92rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+
+        /* TECH STACK */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 60px;
+            animation: fadeUp 0.5s 0.35s both;
+        }
+
+        .tech-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 18px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .tech-card:hover {
+            border-color: rgba(229, 9, 20, 0.25);
+        }
+
+        .tech-icon {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .tech-name {
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .tech-role {
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        /* TEAM */
+        .team-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 40px;
+            display: flex;
+            gap: 36px;
+            align-items: center;
+            animation: fadeUp 0.5s 0.4s both;
+            margin-bottom: 60px;
+        }
+
+        .team-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--red) 0%, #800 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: #fff;
+            box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.15), 0 0 40px rgba(229, 9, 20, 0.1);
+        }
+
+        .team-info {
+            flex: 1;
+        }
+
+        .team-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            color: var(--red);
+            font-size: 0.82rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .team-bio {
+            color: rgba(240, 240, 240, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .team-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .team-link {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 14px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .team-link:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.12) 0%, rgba(229, 9, 20, 0.04) 100%);
+            border: 1px solid rgba(229, 9, 20, 0.2);
+            border-radius: 8px;
+            padding: 48px;
+            text-align: center;
+            animation: fadeUp 0.5s 0.45s both;
+        }
+
+        .cta-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .cta-sub {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 28px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: var(--red-dark);
+        }
+
+        .cta-btn.ghost {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .cta-btn.ghost:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 40px;
+            color: var(--muted);
+            font-size: 0.78rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer span {
+            color: var(--red);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/" class="nav-logo">PelisHub</a>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Inicio</a>
+            <a href="/pages/about.html" class="nav-link active">Nosotros</a>
+            <a href="/pages/contact.html" class="nav-link">Contacto</a>
+        </div>
+        <div class="nav-right" id="navRight"></div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Conoce el proyecto</p>
+            <h1 class="hero-title">Sobre PelisHub</h1>
+            <p class="hero-sub">Una plataforma creada por cinéfilos, para cinéfilos. Aquí las opiniones importan y cada
+                reseña cuenta una historia.</p>
+        </div>
+    </section>
+
+    <div class="page">
+
+        <!-- MISIÓN -->
+        <div class="mission">
+            <div class="mission-card">
+                <div class="mission-icon">🎯</div>
+                <div class="mission-title">Nuestra misión</div>
+                <p class="mission-text">PelisHub nació con el objetivo de crear un espacio donde los amantes del cine
+                    puedan compartir sus opiniones de forma honesta y organizada. Creemos que las mejores
+                    recomendaciones vienen de personas reales, no de algoritmos.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">👁️</div>
+                <div class="mission-title">Nuestra visión</div>
+                <p class="mission-text">Convertirnos en la comunidad de referencia para descubrir películas en español,
+                    donde cada usuario pueda encontrar su próxima película favorita basándose en reseñas auténticas de
+                    una comunidad apasionada por el séptimo arte.</p>
+            </div>
+        </div>
+
+        <!-- CARACTERÍSTICAS -->
+        <div class="section-header">
+            <h2 class="section-title">¿Qué ofrece PelisHub?</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title">Búsqueda inteligente</div>
+                <p class="feature-text">Encuentra cualquier película del catálogo de TMDB con millones de títulos
+                    disponibles al instante.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <div class="feature-title">Reseñas reales</div>
+                <p class="feature-text">Lee y escribe reseñas auténticas. Califica películas del 1 al 5 y comparte tu
+                    experiencia.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👍</div>
+                <div class="feature-title">Reacciones sociales</div>
+                <p class="feature-text">Interactúa con las reseñas de otros usuarios con reacciones como útil, gracioso
+                    o me gusta.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Privacidad y control</div>
+                <p class="feature-text">Tú decides qué mostrar. Oculta, edita o elimina tus reseñas cuando quieras.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👤</div>
+                <div class="feature-title">Perfil personalizado</div>
+                <p class="feature-text">Gestiona tu cuenta, historial de reseñas y preferencias desde tu perfil
+                    personal.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <div class="feature-title">Moderación activa</div>
+                <p class="feature-text">Un panel de administración garantiza un entorno sano y libre de contenido
+                    inapropiado.</p>
+            </div>
+        </div>
+
+        <!-- TECNOLOGÍAS -->
+        <div class="section-header">
+            <h2 class="section-title">Tecnologías utilizadas</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon">🌐</div>
+                <div class="tech-name">HTML5</div>
+                <div class="tech-role">Estructura</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🎨</div>
+                <div class="tech-name">CSS3</div>
+                <div class="tech-role">Estilos</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">⚡</div>
+                <div class="tech-name">JavaScript</div>
+                <div class="tech-role">Interactividad</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🟩</div>
+                <div class="tech-name">Node.js</div>
+                <div class="tech-role">Backend</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🚂</div>
+                <div class="tech-name">Express</div>
+                <div class="tech-role">API REST</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🐬</div>
+                <div class="tech-name">MariaDB</div>
+                <div class="tech-role">Base de datos</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🎬</div>
+                <div class="tech-name">TMDB API</div>
+                <div class="tech-role">Catálogo</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🔐</div>
+                <div class="tech-name">bcrypt</div>
+                <div class="tech-role">Seguridad</div>
+            </div>
+        </div>
+
+        <!-- DESARROLLADOR -->
+        <div class="section-header">
+            <h2 class="section-title">El desarrollador</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="team-card">
+            <div class="team-avatar">LM</div>
+            <div class="team-info">
+                <div class="team-name">Luis Miguel Martínez Hernández</div>
+                <div class="team-role">Desarrollador Full Stack · BUAP</div>
+                <p class="team-bio">Estudiante de Ciencias de la Computación en la Benemérita Universidad Autónoma de
+                    Puebla. Apasionado por su carrera y entusiasta de la programación y automatización de procesos en
+                    sistemas operativos. Disfruta construir soluciones que combinan diseño cuidado con lógica robusta,
+                    desde sistemas de bajo nivel hasta aplicaciones web completas.</p>
+                <div class="team-links">
+                    <a href="https://github.com/Luish3x" target="_blank" class="team-link">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        Luish3x
+                    </a>
+                    <a href="https://instagram.com/luis.h3r" target="_blank" class="team-link">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                        </svg>
+                        luis.h3r
+                    </a>
+                    <a href="mailto:luismiguel15666@gmail.com" class="team-link">
+                        ✉️ luismiguel15666@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <div class="cta-title">¿Listo para descubrir tu próxima película?</div>
+            <p class="cta-sub">Únete a PelisHub, comparte tus reseñas y ayuda a otros a elegir qué ver esta noche.</p>
+            <div class="cta-btns">
+                <a href="/pages/register.html" class="cta-btn">Crear cuenta gratis</a>
+                <a href="/pages/contact.html" class="cta-btn ghost">Contáctanos</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>Hecho con <span>♥</span> · PelisHub © 2025</footer>
+
+    <script>
+        const API = 'http://localhost:3000/api';
+
+        async function loadNav() {
+            try {
+                const res = await fetch(API + '/auth/me', {credentials: 'include'});
+                const navRight = document.getElementById('navRight');
+                if (res.ok) {
+                    const user = await res.json();
+                    navRight.innerHTML =
+                        '<a href="/pages/profile.html" style="color:var(--muted);text-decoration:none;font-size:0.85rem">Hola, <strong style="color:var(--text)">' + user.username + '</strong></a>' +
+                        (user.role === 'admin' ? '<a href="/pages/admin.html" class="nav-btn ghost">Admin</a>' : '') +
+                        '<button class="nav-btn ghost" onclick="logout()">Salir</button>';
+                } else {
+                    navRight.innerHTML =
+                        '<a href="/pages/login.html" class="nav-btn ghost">Iniciar sesión</a>' +
+                        '<a href="/pages/register.html" class="nav-btn">Registrarse</a>';
+                }
+            } catch (e) { }
+        }
+
+        async function logout() {
+            await fetch(API + '/auth/logout', {method: 'POST', credentials: 'include'});
+            window.location.href = '/';
+        }
+
+        loadNav();
+    </script>
+</body>
+
+</html>

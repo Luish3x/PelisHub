@@ -1,0 +1,9 @@
+# Node
+backend/node_modules/
+
+# Variables de entorno (contraseñas)
+backend/.env
+
+# Arch Linux
+.DS_Store
+Thumbs.db

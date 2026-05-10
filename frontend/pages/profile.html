@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelisHub — Mi Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #e50914;
+            --red-dark: #b20710;
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface2: #1a1a1a;
+            --border: rgba(255, 255, 255, 0.07);
+            --text: #f0f0f0;
+            --muted: #666;
+            --green: #46d369;
+            --yellow: #f5c518;
+            --navbar-h: 64px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: var(--navbar-h);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0 40px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent);
+            transition: background 0.3s;
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            letter-spacing: 2px;
+            color: var(--red);
+            text-decoration: none;
+            text-shadow: 0 0 30px rgba(229, 9, 20, 0.35);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 7px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--red-dark);
+        }
+
+        .nav-btn.ghost {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .nav-btn.ghost:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* PAGE */
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: calc(var(--navbar-h) + 40px) 40px 80px;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* PROFILE HEADER */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 32px;
+            animation: fadeUp 0.4s both;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--red), #800);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            color: #fff;
+            letter-spacing: 1px;
+            box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-username {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .profile-email {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .meta-item span {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .badge.admin {
+            background: rgba(229, 9, 20, 0.15);
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            color: var(--red);
+        }
+
+        .badge.user {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+            animation: fadeUp 0.4s 0.1s both;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 28px;
+        }
+
+        .card-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        /* FORM */
+        .field {
+            margin-bottom: 14px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=password] {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            padding: 10px 12px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: rgba(229, 9, 20, 0.4);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 4px;
+        }
+
+        .btn:hover {
+            background: var(--red-dark);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* STATS MINI */
+        .stats-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat-mini {
+            flex: 1;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-mini-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--red);
+        }
+
+        .stat-mini-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* RESEÑAS SECTION */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            animation: fadeUp 0.4s 0.2s both;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-count {
+            font-size: 0.78rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        /* FILTER */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            animation: fadeUp 0.4s 0.25s both;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .filter-btn:hover {
+            color: var(--text);
+        }
+
+        .filter-btn.active {
+            background: rgba(229, 9, 20, 0.1);
+            border-color: rgba(229, 9, 20, 0.4);
+            color: var(--red);
+        }
+
+        /* REVIEW CARDS */
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            animation: fadeUp 0.4s 0.3s both;
+        }
+
+        .review-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .review-poster {
+            width: 52px;
+            height: 78px;
+            border-radius: 4px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: var(--surface2);
+        }
+
+        .review-poster-placeholder {
+            width: 52px;
+            height: 78px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            background: var(--surface2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .review-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .review-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            gap: 12px;
+        }
+
+        .review-movie {
+            font-weight: 500;
+            font-size: 0.92rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .review-movie:hover {
+            color: var(--red);
+        }
+
+        .review-movie-meta {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .review-stars {
+            color: var(--yellow);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .review-content {
+            color: rgba(240, 240, 240, 0.75);
+            font-size: 0.87rem;
+            line-height: 1.65;
+            margin-bottom: 12px;
+        }
+
+        .hidden-badge {
+            font-size: 0.72rem;
+            color: var(--yellow);
+            background: rgba(245, 197, 24, 0.08);
+            border: 1px solid rgba(245, 197, 24, 0.2);
+            border-radius: 3px;
+            padding: 3px 8px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Reacciones recibidas */
+        .review-reactions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .reaction-chip {
+            font-size: 0.72rem;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3px 9px;
+        }
+
+        /* Acciones */
+        .review-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .act-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            color: var(--muted);
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.15s;
+        }
+
+        .act-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text);
+        }
+
+        .act-btn.danger:hover {
+            border-color: rgba(229, 9, 20, 0.4);
+            color: var(--red);
+            background: rgba(229, 9, 20, 0.07);
+        }
+
+        .act-btn.warn {
+            border-color: rgba(245, 197, 24, 0.2);
+            color: var(--yellow);
+        }
+
+        .act-btn.warn:hover {
+            background: rgba(245, 197, 24, 0.07);
+        }
+
+        /* Edit inline */
+        .edit-area {
+            margin-top: 10px;
+        }
+
+        .edit-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+
+        .star-btn {
+            font-size: 1.4rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.15s;
+            line-height: 1;
+        }
+
+        .star-btn.active {
+            color: var(--yellow);
+        }
+
+        .edit-textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            border-radius: 4px;
+            padding: 10px 12px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.87rem;
+            resize: vertical;
+            min-height: 90px;
+            outline: none;
+        }
+
+        .edit-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        /* Empty */
+        .empty {
+            text-align: center;
+            padding: 48px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .empty span {
+            display: block;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        /* Flash */
+        .flash {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            background: #1e1e1e;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 14px 20px;
+            font-size: 0.875rem;
+            color: var(--text);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+        }
+
+        .flash.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .flash.success {
+            border-color: rgba(70, 211, 105, 0.4);
+        }
+
+        .flash.error {
+            border-color: rgba(229, 9, 20, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/" class="nav-logo">PelisHub</a>
+        <div class="nav-right">
+            <a href="/" class="nav-btn ghost">← Inicio</a>
+            <button class="nav-btn ghost" onclick="logout()">Salir</button>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <!-- PERFIL HEADER -->
+        <div class="profile-header" id="profileHeader">
+            <div class="avatar" id="avatar">?</div>
+            <div class="profile-info">
+                <div class="profile-username" id="profileUsername">—</div>
+                <div class="profile-email" id="profileEmail">—</div>
+                <div class="profile-meta">
+                    <div class="meta-item">Miembro desde <span id="profileDate">—</span></div>
+                    <span id="profileBadge"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRID: STATS + SETTINGS -->
+        <div class="grid">
+
+            <!-- Stats -->
+            <div class="card">
+                <div class="card-title">Actividad</div>
+                <div class="stats-row">
+                    <div class="stat-mini">
+                        <div class="stat-mini-value" id="statTotal">—</div>
+                        <div class="stat-mini-label">Reseñas</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="stat-mini-value" id="statVisible">—</div>
+                        <div class="stat-mini-label">Visibles</div>
+                    </div>
+                    <div class="stat-mini">
+                        <div class="stat-mini-value" id="statHidden">—</div>
+                        <div class="stat-mini-label">Ocultas</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cambiar username -->
+            <div class="card">
+                <div class="card-title">Cambiar nombre de usuario</div>
+                <div class="field">
+                    <label>Nuevo username</label>
+                    <input type="text" id="newUsername" placeholder="nuevo_username">
+                </div>
+                <button class="btn" onclick="changeUsername()">Actualizar</button>
+            </div>
+
+            <!-- Cambiar contraseña -->
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-title">Cambiar contraseña</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:end">
+                    <div class="field" style="margin:0">
+                        <label>Contraseña actual</label>
+                        <input type="password" id="currentPass" placeholder="••••••••">
+                    </div>
+                    <div class="field" style="margin:0">
+                        <label>Nueva contraseña</label>
+                        <input type="password" id="newPass" placeholder="••••••••">
+                    </div>
+                    <button class="btn" onclick="changePassword()">Actualizar</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RESEÑAS -->
+        <div class="section-header">
+            <h2 class="section-title">Mis Reseñas</h2>
+            <div class="section-line"></div>
+            <span class="section-count" id="reviewsCount"></span>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="setFilter('all', this)">Todas</button>
+            <button class="filter-btn" onclick="setFilter('visible', this)">Visibles</button>
+            <button class="filter-btn" onclick="setFilter('hidden', this)">Ocultas</button>
+        </div>
+
+        <div class="reviews-list" id="reviewsList"></div>
+
+    </div>
+
+    <div class="flash" id="flash"></div>
+
+    <script>
+        const API = 'http://localhost:3000/api';
+        const TMDB_IMG = 'https://image.tmdb.org/t/p/w92';
+        let allReviews = [];
+        let currentFilter = 'all';
+        let editRatings = {};
+
+        function showFlash(msg, type = 'success') {
+            const el = document.getElementById('flash');
+            el.textContent = msg;
+            el.className = 'flash ' + type + ' show';
+            setTimeout(() => el.classList.remove('show'), 3000);
+        }
+
+        function starsHtml(n) {
+            return '★'.repeat(n) + '☆'.repeat(5 - n);
+        }
+
+        function formatDate(str) {
+            return new Date(str).toLocaleDateString('es-MX', {day: '2-digit', month: 'long', year: 'numeric'});
+        }
+
+        function timeAgo(str) {
+            const diff = Date.now() - new Date(str);
+            const m = Math.floor(diff / 60000);
+            if (m < 1) return 'ahora';
+            if (m < 60) return 'hace ' + m + 'm';
+            const h = Math.floor(m / 60);
+            if (h < 24) return 'hace ' + h + 'h';
+            return 'hace ' + Math.floor(h / 24) + 'd';
+        }
+
+        async function logout() {
+            await fetch(API + '/auth/logout', {method: 'POST', credentials: 'include'});
+            window.location.href = '/';
+        }
+
+        // ── Perfil ──
+        async function loadProfile() {
+            try {
+                const res = await fetch(API + '/profile', {credentials: 'include'});
+                if (!res.ok) {window.location.href = '/pages/login.html'; return;}
+                const u = await res.json();
+
+                document.getElementById('avatar').textContent = u.username[0].toUpperCase();
+                document.getElementById('profileUsername').textContent = u.username;
+                document.getElementById('profileEmail').textContent = u.email;
+                document.getElementById('profileDate').textContent = formatDate(u.created_at);
+                document.getElementById('profileBadge').innerHTML =
+                    '<span class="badge ' + u.role + '">' + u.role + '</span>';
+                document.getElementById('newUsername').placeholder = u.username;
+            } catch (e) {window.location.href = '/pages/login.html';}
+        }
+
+        // ── Reseñas ──
+        async function loadReviews() {
+            try {
+                const res = await fetch(API + '/profile/reviews', {credentials: 'include'});
+                allReviews = await res.json();
+                updateStats();
+                renderReviews();
+            } catch (e) { }
+        }
+
+        function updateStats() {
+            const visible = allReviews.filter(r => !r.is_hidden).length;
+            const hidden = allReviews.filter(r => r.is_hidden).length;
+            document.getElementById('statTotal').textContent = allReviews.length;
+            document.getElementById('statVisible').textContent = visible;
+            document.getElementById('statHidden').textContent = hidden;
+        }
+
+        function setFilter(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderReviews();
+        }
+
+        function renderReviews() {
+            const filtered = allReviews.filter(r => {
+                if (currentFilter === 'visible') return !r.is_hidden;
+                if (currentFilter === 'hidden') return r.is_hidden;
+                return true;
+            });
+
+            document.getElementById('reviewsCount').textContent =
+                filtered.length + ' reseña' + (filtered.length !== 1 ? 's' : '');
+
+            const list = document.getElementById('reviewsList');
+
+            if (!filtered.length) {
+                list.innerHTML = '<div class="empty"><span>🎬</span>No tienes reseñas en esta categoría</div>';
+                return;
+            }
+
+            list.innerHTML = filtered.map(function (r) {
+                const poster = r.poster_url
+                    ? '<img class="review-poster" src="' + r.poster_url + '" alt="' + r.movie_title + '" onerror="this.style.display=\'none\'">'
+                    : '<div class="review-poster-placeholder">🎬</div>';
+
+                const reactionChips = Object.entries(r.reactions || {})
+                    .filter(([, v]) => v > 0)
+                    .map(function (entry) {
+                        const emojis = {like: '👍', dislike: '👎', helpful: '💡', funny: '😂'};
+                        return '<span class="reaction-chip">' + (emojis[entry[0]] || '') + ' ' + entry[1] + '</span>';
+                    }).join('');
+
+                const hiddenBadge = r.is_hidden
+                    ? '<div class="hidden-badge">🔒 Oculta — solo tú la ves</div>' : '';
+
+                return '<div class="review-card" id="pcard-' + r.id + '">' +
+                    poster +
+                    '<div class="review-body">' +
+                    '<div class="review-top">' +
+                    '<div>' +
+                    '<a class="review-movie" href="/pages/movie.html?id=' + r.tmdb_id + '">' + r.movie_title + '</a>' +
+                    '<div class="review-movie-meta">' + timeAgo(r.created_at) + '</div>' +
+                    '</div>' +
+                    '<span class="review-stars">' + starsHtml(r.rating) + '</span>' +
+                    '</div>' +
+                    hiddenBadge +
+                    '<p class="review-content" id="pcontent-' + r.id + '">' + r.content + '</p>' +
+                    (reactionChips ? '<div class="review-reactions">' + reactionChips + '</div>' : '') +
+                    '<div class="review-actions" id="pactions-' + r.id + '">' +
+                    '<button class="act-btn" onclick="startEdit(' + r.id + ',' + r.rating + ')">Editar</button>' +
+                    '<button class="act-btn ' + (r.is_hidden ? 'warn' : '') + '" onclick="toggleHide(' + r.id + ',' + r.is_hidden + ')">' +
+                    (r.is_hidden ? 'Mostrar' : 'Ocultar') +
+                    '</button>' +
+                    '<button class="act-btn danger" onclick="deleteReview(' + r.id + ')">Eliminar</button>' +
+                    '</div>' +
+                    '<div id="pedit-' + r.id + '"></div>' +
+                    '</div>' +
+                    '</div>';
+            }).join('');
+        }
+
+        // ── Editar ──
+        function startEdit(id, currentRating) {
+            editRatings[id] = currentRating;
+            const editWrap = document.getElementById('pedit-' + id);
+            const contentEl = document.getElementById('pcontent-' + id);
+            const actionsEl = document.getElementById('pactions-' + id);
+
+            if (editWrap.innerHTML) {cancelEdit(id); return;}
+
+            const originalText = contentEl.textContent.trim();
+            contentEl.style.display = 'none';
+            actionsEl.style.display = 'none';
+
+            editWrap.innerHTML =
+                '<div class="edit-area">' +
+                '<div class="edit-stars">' +
+                [1, 2, 3, 4, 5].map(n =>
+                    '<button class="star-btn ' + (n <= currentRating ? 'active' : '') + '" ' +
+                    'onclick="setEditRating(' + id + ',' + n + ')">★</button>'
+                ).join('') +
+                '</div>' +
+                '<textarea class="edit-textarea" id="pedit-text-' + id + '">' + originalText + '</textarea>' +
+                '<div class="edit-footer">' +
+                '<button class="act-btn" onclick="cancelEdit(' + id + ')">Cancelar</button>' +
+                '<button class="btn" style="padding:8px 18px;font-size:0.82rem" onclick="saveEdit(' + id + ')">Guardar</button>' +
+                '</div>' +
+                '</div>';
+        }
+
+        function setEditRating(id, n) {
+            editRatings[id] = n;
+            const wrap = document.getElementById('pedit-' + id);
+            wrap.querySelectorAll('.star-btn').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.n || btn.textContent) <= n);
+            });
+            // marcar estrellas por posición
+            const stars = wrap.querySelectorAll('.star-btn');
+            stars.forEach((btn, i) => btn.classList.toggle('active', i < n));
+        }
+
+        function cancelEdit(id) {
+            document.getElementById('pedit-' + id).innerHTML = '';
+            document.getElementById('pcontent-' + id).style.display = '';
+            document.getElementById('pactions-' + id).style.display = '';
+        }
+
+        async function saveEdit(id) {
+            const content = document.getElementById('pedit-text-' + id).value.trim();
+            const rating = editRatings[id];
+            if (!content) {showFlash('La reseña no puede estar vacía', 'error'); return;}
+            if (!rating) {showFlash('Selecciona una calificación', 'error'); return;}
+            try {
+                const res = await fetch(API + '/reviews/' + id, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify({content, rating})
+                });
+                if (!res.ok) {showFlash('Error al guardar', 'error'); return;}
+                showFlash('Reseña actualizada');
+                loadReviews();
+            } catch (e) {showFlash('Error al guardar', 'error');}
+        }
+
+        // ── Ocultar / Mostrar ──
+        async function toggleHide(id, isHidden) {
+            try {
+                const res = await fetch(API + '/reviews/' + id, {
+                    method: 'PATCH',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify({is_hidden: !isHidden})
+                });
+                if (res.ok) {showFlash(isHidden ? 'Reseña visible' : 'Reseña oculta'); loadReviews();}
+            } catch (e) { }
+        }
+
+        // ── Eliminar ──
+        async function deleteReview(id) {
+            if (!confirm('¿Eliminar esta reseña permanentemente?')) return;
+            try {
+                const res = await fetch(API + '/reviews/' + id, {
+                    method: 'DELETE', credentials: 'include'
+                });
+                if (res.ok) {showFlash('Reseña eliminada'); loadReviews();}
+            } catch (e) { }
+        }
+
+        // ── Cambiar username ──
+        async function changeUsername() {
+            const username = document.getElementById('newUsername').value.trim();
+            if (!username) {showFlash('Escribe un username', 'error'); return;}
+            try {
+                const res = await fetch(API + '/profile/username', {
+                    method: 'PATCH',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify({username})
+                });
+                const data = await res.json();
+                if (!res.ok) {showFlash(data.error, 'error'); return;}
+                showFlash('Username actualizado');
+                loadProfile();
+                document.getElementById('newUsername').value = '';
+            } catch (e) {showFlash('Error', 'error');}
+        }
+
+        // ── Cambiar contraseña ──
+        async function changePassword() {
+            const current_password = document.getElementById('currentPass').value;
+            const new_password = document.getElementById('newPass').value;
+            if (!current_password || !new_password) {showFlash('Completa ambos campos', 'error'); return;}
+            try {
+                const res = await fetch(API + '/profile/password', {
+                    method: 'PATCH',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify({current_password, new_password})
+                });
+                const data = await res.json();
+                if (!res.ok) {showFlash(data.error, 'error'); return;}
+                showFlash('Contraseña actualizada');
+                document.getElementById('currentPass').value = '';
+                document.getElementById('newPass').value = '';
+            } catch (e) {showFlash('Error', 'error');}
+        }
+
+        // ── Init ──
+        async function init() {
+            await loadProfile();
+            await loadReviews();
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

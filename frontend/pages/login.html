@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelisHub — Iniciar Sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #e50914;
+            --red-dark: #b20710;
+            --bg: #0a0a0a;
+            --surface: rgba(15, 15, 15, 0.85);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f0f0f0;
+            --muted: #888;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Fondo cinematográfico */
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                radial-gradient(ellipse 80% 60% at 20% 50%, rgba(229, 9, 20, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 30%, rgba(80, 0, 0, 0.2) 0%, transparent 60%);
+        }
+
+        .bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px,
+                    rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px);
+            pointer-events: none;
+        }
+
+        /* Partículas decorativas */
+        .sparks {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .spark {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--red);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float var(--d, 6s) var(--delay, 0s) infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(-10vh) translateX(var(--dx, 20px));
+                opacity: 0;
+            }
+        }
+
+        /* Card */
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 48px 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 80px rgba(229, 9, 20, 0.08), 0 32px 64px rgba(0, 0, 0, 0.6);
+            animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Logo */
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            color: var(--red);
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 0 0 40px rgba(229, 9, 20, 0.4);
+        }
+
+        .tagline {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.82rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+        }
+
+        /* Form */
+        .field {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            padding: 12px 14px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        input:focus {
+            border-color: rgba(229, 9, 20, 0.5);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Error */
+        .error-msg {
+            background: rgba(229, 9, 20, 0.12);
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            border-radius: 3px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            color: #ff6b6b;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .error-msg.visible {
+            display: block;
+        }
+
+        /* Botón */
+        .btn {
+            width: 100%;
+            background: var(--red);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s, transform 0.1s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--red-dark);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn .spinner {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin: 0 auto;
+        }
+
+        .btn.loading span {
+            display: none;
+        }
+
+        .btn.loading .spinner {
+            display: block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .divider {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin: 24px 0 0;
+        }
+
+        .divider a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .divider a:hover {
+            color: var(--red);
+            border-color: var(--red);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg"></div>
+    <div class="sparks" id="sparks"></div>
+
+    <div class="card">
+        <div class="logo">PelisHub</div>
+        <p class="tagline">Tu comunidad de reseñas</p>
+
+        <div class="error-msg" id="errorMsg"></div>
+
+        <div class="field">
+            <label>Correo electrónico</label>
+            <input type="email" id="email" placeholder="tu@email.com" autocomplete="email">
+        </div>
+        <div class="field">
+            <label>Contraseña</label>
+            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+
+        <button class="btn" id="loginBtn" onclick="handleLogin()">
+            <span>Iniciar sesión</span>
+            <div class="spinner"></div>
+        </button>
+
+        <p class="divider">¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+    </div>
+
+    <script>
+        // Generar partículas
+        const sparks = document.getElementById('sparks');
+        for (let i = 0; i < 20; i++) {
+            const s = document.createElement('div');
+            s.className = 'spark';
+            s.style.cssText = `left:${Math.random() * 100}%;--d:${5 + Math.random() * 8}s;--delay:${Math.random() * 6}s;--dx:${(Math.random() - 0.5) * 60}px`;
+            sparks.appendChild(s);
+        }
+
+        // Enter para submit
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Enter') handleLogin();
+        });
+
+        async function handleLogin() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const errorMsg = document.getElementById('errorMsg');
+
+            errorMsg.classList.remove('visible');
+
+            if (!email || !password) {
+                showError('Por favor completa todos los campos');
+                return;
+            }
+
+            btn.classList.add('loading');
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    body: JSON.stringify({email, password})
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    showError(data.error || 'Error al iniciar sesión');
+                    return;
+                }
+
+                // Redirigir al home
+                const redirect = new URLSearchParams(window.location.search).get('redirect');
+                window.location.href = redirect || '/';
+
+            } catch (err) {
+                showError('No se pudo conectar al servidor');
+            } finally {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+            }
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            el.classList.add('visible');
+        }
+    </script>
+</body>
+
+</html>
