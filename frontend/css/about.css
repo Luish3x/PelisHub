@@ -1,0 +1,332 @@
+/* HERO */
+.hero {
+    position: relative;
+    padding: calc(var(--navbar-h) + 80px) 40px 80px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(229, 9, 20, 0.12) 0%, transparent 65%);
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255, 255, 255, 0.01) 3px, rgba(255, 255, 255, 0.01) 4px);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+    animation: fadeUp 0.5s 0.1s both;
+}
+
+.hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    animation: fadeUp 0.5s 0.2s both;
+}
+
+.hero-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    animation: fadeUp 0.5s 0.3s both;
+}
+
+/* SECTIONS */
+.page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+}
+
+/* MISSION */
+.mission {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 60px;
+    animation: fadeUp 0.5s 0.2s both;
+}
+
+.mission-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+}
+
+.mission-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.mission-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    color: var(--red);
+}
+
+.mission-text {
+    color: rgba(240, 240, 240, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    text-align: justify;
+}
+
+/* FEATURES */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s 0.25s both;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 60px;
+    animation: fadeUp 0.5s 0.3s both;
+}
+
+.feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.feature-card:hover {
+    border-color: rgba(229, 9, 20, 0.3);
+    transform: translateY(-3px);
+}
+
+.feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.feature-title {
+    font-weight: 500;
+    font-size: 0.92rem;
+    margin-bottom: 8px;
+}
+
+.feature-text {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.65;
+}
+
+/* TECH STACK */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 60px;
+    animation: fadeUp 0.5s 0.35s both;
+}
+
+.tech-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.tech-card:hover {
+    border-color: rgba(229, 9, 20, 0.25);
+}
+
+.tech-icon {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.tech-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.tech-role {
+    font-size: 0.72rem;
+    color: var(--muted);
+}
+
+/* TEAM */
+.team-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 40px;
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    animation: fadeUp 0.5s 0.4s both;
+    margin-bottom: 60px;
+}
+
+.team-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--red) 0%, #800 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: #fff;
+    box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.15), 0 0 40px rgba(229, 9, 20, 0.1);
+}
+
+.team-info {
+    flex: 1;
+}
+
+.team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+}
+
+.team-role {
+    color: var(--red);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.team-bio {
+    color: rgba(240, 240, 240, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.team-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.team-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.team-link:hover {
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* CTA */
+.cta {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.12) 0%, rgba(229, 9, 20, 0.04) 100%);
+    border: 1px solid rgba(229, 9, 20, 0.2);
+    border-radius: 8px;
+    padding: 48px;
+    text-align: center;
+    animation: fadeUp 0.5s 0.45s both;
+}
+
+.cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.cta-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    background: var(--red-dark);
+}
+
+.cta-btn.ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.cta-btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.05);
+}

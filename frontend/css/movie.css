@@ -1,0 +1,457 @@
+/* BACKDROP */
+.backdrop {
+    position: relative;
+    margin-top: var(--navbar-h);
+    height: 420px;
+    overflow: hidden;
+}
+
+.backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px) brightness(0.3);
+    transform: scale(1.05);
+}
+
+.backdrop-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 1) 100%);
+}
+
+.backdrop-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a0a0a 0%, #0a0a0a 100%);
+}
+
+/* CONTENT */
+.content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    position: relative;
+}
+
+/* MOVIE HEADER */
+.movie-header {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    margin-top: -180px;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.5s 0.1s both;
+}
+
+.movie-poster {
+    width: 200px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--border);
+}
+
+.movie-poster img {
+    width: 100%;
+    display: block;
+}
+
+.movie-poster-placeholder {
+    width: 200px;
+    aspect-ratio: 2/3;
+    flex-shrink: 0;
+    background: #1a1a1a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border: 1px solid var(--border);
+}
+
+.movie-info {
+    flex: 1;
+    padding-top: 120px;
+}
+
+.movie-genres {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.genre-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(229, 9, 20, 0.4);
+    color: rgba(229, 9, 20, 0.9);
+}
+
+.movie-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.movie-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.movie-meta-sep {
+    color: var(--border);
+}
+
+.movie-rating-imdb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245, 197, 24, 0.1);
+    border: 1px solid rgba(245, 197, 24, 0.2);
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+
+.movie-rating-imdb .star {
+    color: #f5c518;
+    font-size: 1rem;
+}
+
+.movie-rating-imdb .score {
+    color: #f5c518;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.movie-rating-imdb .label {
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.movie-plot {
+    color: rgba(240, 240, 240, 0.75);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    max-width: 620px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.movie-crew {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.crew-item {
+    font-size: 0.82rem;
+}
+
+.crew-label {
+    color: var(--muted);
+    margin-bottom: 2px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.crew-value {
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* DIVIDER */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 52px 0 28px;
+}
+
+.divider-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+/* FORM */
+.review-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    margin-bottom: 40px;
+}
+
+.review-form h3 {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+.stars-wrap {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.star-btn {
+    font-size: 1.6rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.15s, transform 0.15s;
+    line-height: 1;
+}
+
+.star-btn:hover,
+.star-btn.active {
+    color: #f5c518;
+    transform: scale(1.15);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.char-count {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.submit-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: var(--red-dark);
+}
+
+.login-prompt {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.login-prompt a {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* REVIEWS */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 22px;
+    animation: fadeUp 0.4s both;
+}
+
+.review-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), #800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.review-author-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.review-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.review-stars {
+    color: #f5c518;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.review-content {
+    color: rgba(240, 240, 240, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.review-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.reaction-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.reaction-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+}
+
+.reaction-btn.active {
+    border-color: rgba(229, 9, 20, 0.4);
+    color: var(--red);
+    background: rgba(229, 9, 20, 0.07);
+}
+
+.review-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: color 0.15s, background 0.15s;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.action-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.action-btn.danger:hover {
+    color: #ff6b6b;
+}
+
+.no-reviews {
+    text-align: center;
+    padding: 48px 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.no-reviews span {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+
+.hidden-badge {
+    font-size: 0.75rem;
+    color: #f5c518;
+    background: rgba(245, 197, 24, 0.08);
+    border: 1px solid rgba(245, 197, 24, 0.2);
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.edit-area {
+    margin-bottom: 16px;
+}
+
+.edit-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    resize: vertical;
+    outline: none;
+    margin: 12px 0 10px;
+}
+
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}

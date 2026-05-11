@@ -1,0 +1,434 @@
+/* ═══════════════════════════════════════════
+   PELISHUB — GLOBAL CSS
+   Variables, reset, navbar, footer, botones,
+   badges, flash — compartido en todas las páginas
+═══════════════════════════════════════════ */
+
+/* ── VARIABLES ── */
+:root {
+    --red: #e50914;
+    --red-dark: #b20710;
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: rgba(255, 255, 255, 0.07);
+    --text: #f0f0f0;
+    --muted: #666;
+    --green: #46d369;
+    --yellow: #f5c518;
+    --navbar-h: 64px;
+}
+
+/* ── RESET ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ── NAVBAR ── */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--navbar-h);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 40px;
+    background: rgba(10, 10, 10, 0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+nav.transparent {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent);
+    border-bottom: none;
+    backdrop-filter: none;
+}
+
+nav.transparent.scrolled {
+    background: rgba(10, 10, 10, 0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+.nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 2px;
+    color: var(--red);
+    text-decoration: none;
+    text-shadow: 0 0 30px rgba(229, 9, 20, 0.35);
+    justify-self: start;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 3px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.nav-username {
+    color: var(--text);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-user:hover .nav-username {
+    color: var(--red);
+}
+
+.admin-badge {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    color: var(--red);
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+
+/* ── BOTONES ── */
+.btn,
+.nav-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn:hover,
+.nav-btn:hover {
+    background: var(--red-dark);
+}
+
+.btn:active,
+.nav-btn:active {
+    transform: scale(0.98);
+}
+
+.btn:disabled,
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn.ghost,
+.nav-btn.ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.btn.ghost:hover,
+.nav-btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Spinner dentro de botón */
+.btn .spinner,
+.nav-btn .spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin: 0 auto;
+}
+
+.btn.loading span,
+.nav-btn.loading span {
+    display: none;
+}
+
+.btn.loading .spinner,
+.nav-btn.loading .spinner {
+    display: block;
+}
+
+/* ── BADGES ── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.badge.admin {
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    color: var(--red);
+}
+
+.badge.user {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--muted);
+}
+
+.badge.active {
+    background: rgba(70, 211, 105, 0.1);
+    border: 1px solid rgba(70, 211, 105, 0.3);
+    color: var(--green);
+}
+
+.badge.inactive {
+    background: rgba(255, 100, 100, 0.1);
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    color: #ff6b6b;
+}
+
+.badge.hidden {
+    background: rgba(245, 197, 24, 0.1);
+    border: 1px solid rgba(245, 197, 24, 0.3);
+    color: var(--yellow);
+}
+
+.badge.visible {
+    background: rgba(70, 211, 105, 0.1);
+    border: 1px solid rgba(70, 211, 105, 0.3);
+    color: var(--green);
+}
+
+/* ── FLASH ── */
+.flash {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    background: #1e1e1e;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 20px;
+    font-size: 0.875rem;
+    color: var(--text);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+
+.flash.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.flash.success {
+    border-color: rgba(70, 211, 105, 0.4);
+}
+
+.flash.error {
+    border-color: rgba(229, 9, 20, 0.4);
+}
+
+/* ── FOOTER ── */
+footer {
+    text-align: center;
+    padding: 32px 40px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+}
+
+footer span {
+    color: var(--red);
+}
+
+/* ── DIVIDER ── */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.section-count {
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+/* ── ANIMACIONES ── */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ── INPUTS GLOBALES ── */
+input[type=text],
+input[type=email],
+input[type=password],
+textarea,
+select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: rgba(229, 9, 20, 0.45);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.18);
+}
+
+select option {
+    background: #1a1a1a;
+}
+
+label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+/* ── ERROR MSG ── */
+.error-msg {
+    background: rgba(229, 9, 20, 0.12);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: #ff6b6b;
+    margin-bottom: 16px;
+    display: none;
+}
+
+.error-msg.visible {
+    display: block;
+}
+
+/* ── RESPONSIVE BASE ── */
+@media (max-width: 768px) {
+    nav {
+        padding: 0 16px;
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    footer {
+        padding: 24px 20px;
+    }
+}

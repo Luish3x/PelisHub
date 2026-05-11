@@ -10,14 +10,14 @@ const app = express();
 // Límite general — 100 requests por 15 minutos por IP
 const generalLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
+    max: 1000,
     message: { error: 'Demasiadas peticiones, intenta más tarde' }
 });
 
 // Límite estricto para auth — 10 intentos por 15 minutos
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 10,
+    max: 100,
     message: { error: 'Demasiados intentos, espera 15 minutos' }
 });
 
