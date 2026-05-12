@@ -455,3 +455,100 @@
     justify-content: flex-end;
     gap: 8px;
 }
+
+@media (max-width: 768px) {
+
+    /* Ocultar poster en móvil — el backdrop ya lo muestra */
+    .movie-poster,
+    .movie-poster-placeholder {
+        display: none;
+    }
+
+    /* Header ocupa todo el ancho */
+    .movie-header {
+        flex-direction: column;
+        gap: 16px;
+        margin-top: -60px;
+    }
+
+    .movie-info {
+        padding-top: 0;
+        width: 100%;
+    }
+
+    /* Backdrop más alto para compensar */
+    .backdrop {
+        height: 320px;
+    }
+
+    .movie-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .movie-meta {
+        gap: 10px;
+        font-size: 0.78rem;
+    }
+
+    .movie-plot {
+        font-size: 0.85rem;
+    }
+
+    .movie-crew {
+        gap: 16px;
+    }
+
+    /* Contenido con padding lateral */
+    .content {
+        padding: 0 16px 60px;
+    }
+
+    /* Reseñas */
+    .review-form {
+        padding: 20px 16px;
+    }
+
+    .review-card {
+        padding: 16px;
+    }
+
+    /* Header de reseña — estrellas y acciones en columna */
+    .review-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .review-header>div:last-child {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .review-actions {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .action-btn {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    /* Reacciones */
+    .review-footer {
+        gap: 6px;
+    }
+
+    .reaction-btn {
+        font-size: 0.72rem;
+        padding: 4px 8px;
+    }
+
+    /* Login prompt */
+    .login-prompt {
+        padding: 16px;
+        font-size: 0.85rem;
+    }
+}

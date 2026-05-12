@@ -289,3 +289,52 @@
 .submit-btn.loading .spinner {
     display: block;
 }
+
+@media (max-width: 768px) {
+
+    /* Hero */
+    .hero {
+        padding: calc(var(--navbar-h) + 40px) 16px 40px;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    /* Layout — 1 columna en móvil */
+    .content {
+        grid-template-columns: 1fr;
+        padding: 0 16px 80px;
+        gap: 24px;
+    }
+
+    /* Info card no sticky en móvil */
+    .info-card {
+        position: static;
+        padding: 24px;
+    }
+
+    .info-item {
+        gap: 10px;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+    }
+
+    /* Form */
+    .form-card {
+        padding: 24px 16px;
+    }
+
+    /* Campo nombre/email — 1 columna */
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 0.88rem;
+    }
+}

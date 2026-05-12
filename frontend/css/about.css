@@ -330,3 +330,81 @@
 .cta-btn.ghost:hover {
     background: rgba(255, 255, 255, 0.05);
 }
+
+@media (max-width: 768px) {
+
+    /* Hero */
+    .hero {
+        padding: calc(var(--navbar-h) + 40px) 16px 60px;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    /* Page */
+    .page {
+        padding: 0 16px 80px;
+    }
+
+    /* Misión — 1 columna */
+    .mission {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    .mission-card {
+        padding: 24px;
+    }
+
+    /* Features — 1 columna */
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 40px;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+
+    /* Tech — 2 columnas */
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 40px;
+    }
+
+    /* Team — vertical */
+    .team-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 28px 20px;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .team-bio {
+        text-align: left;
+    }
+
+    .team-links {
+        justify-content: center;
+    }
+
+    /* CTA */
+    .cta {
+        padding: 32px 20px;
+    }
+
+    .cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -413,3 +413,101 @@
     font-size: 2.5rem;
     margin-bottom: 12px;
 }
+
+@media (max-width: 768px) {
+
+    /* Page */
+    .page {
+        padding: calc(var(--navbar-h) + 24px) 16px 60px;
+    }
+
+    /* Profile header — vertical */
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 24px 16px;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .profile-meta {
+        justify-content: center;
+    }
+
+    /* Grid — 1 columna */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+
+    /* Cambiar contraseña — 1 columna */
+    .card[style*="grid-column"]>div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .card {
+        padding: 20px 16px;
+    }
+
+    /* Stats */
+    .stats-row {
+        gap: 10px;
+    }
+
+    /* Filtros */
+    .filter-bar {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    /* Review cards */
+    .review-card {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .review-poster,
+    .review-poster-placeholder {
+        width: 100%;
+        height: 120px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+
+    .review-poster-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .review-top {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+    }
+
+    .review-actions {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    /* Edit area */
+    .edit-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .edit-footer .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Section header */
+    .section-header {
+        margin-bottom: 16px;
+    }
+}

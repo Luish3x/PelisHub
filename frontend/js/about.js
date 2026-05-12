@@ -1,3 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    loadNav({ activePage: 'about' });
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadNav({ activePage: 'about' });
 });

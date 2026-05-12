@@ -89,8 +89,7 @@ function clearSearch() {
 }
 
 // ── Init ──
-// ── Init ──
-document.addEventListener('DOMContentLoaded', function() {
-  loadNav({ activePage: 'home', transparent: true });
-  loadPopular();
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadNav({ activePage: 'home', transparent: true });
+    loadPopular();
 });

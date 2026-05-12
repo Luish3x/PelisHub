@@ -298,7 +298,7 @@ async function saveEdit(id) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     if (!imdbId) window.location.href = '/';
-    init();
+    await init();
 });

@@ -268,3 +268,75 @@ tr:hover td {
         padding: calc(var(--navbar-h) + 24px) 20px 60px;
     }
 }
+
+@media (max-width: 768px) {
+
+    /* Page */
+    .page {
+        padding: calc(var(--navbar-h) + 24px) 16px 60px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    /* Stats — 2 columnas */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 28px;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    /* Tabs */
+    .tabs {
+        gap: 0;
+    }
+
+    .tab-btn {
+        padding: 10px 12px;
+        font-size: 0.78rem;
+    }
+
+    /* Toolbar */
+    .table-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .table-search {
+        width: 100%;
+    }
+
+    /* Tablas scrolleables horizontalmente */
+    .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        padding: 10px 12px;
+        font-size: 0.78rem;
+    }
+
+    /* Acciones */
+    .actions {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .act-btn {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        white-space: nowrap;
+    }
+}
